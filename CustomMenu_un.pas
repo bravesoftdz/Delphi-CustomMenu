@@ -11,7 +11,8 @@ uses
   FMX.Graphics,
   System.UITypes,
   System.Classes,
-  System.SysUtils;
+  System.SysUtils,
+  FMX.Dialogs;
 
 type
   TCustomMenu = class
@@ -22,6 +23,7 @@ type
     lytBody: TLayout;
     itemCancelar: TRectangle;
     lblItemCancelar: TLabel;
+    procedure ItemClick(Sender: TObject);
   public
     { Public declarations }
     constructor Create(frm: TForm);
@@ -126,7 +128,7 @@ begin
     Margins.Left := 16;
     Margins.Right := 16;
 
-//    Corners := []
+// Corners := []
   end;
 
   lblItemCancelar := TLabel.Create(lytBody);
@@ -137,6 +139,7 @@ begin
     BringToFront;
 
     HitTest := True;
+    OnClick := ItemClick;
 
     Text := AItemText;
 
@@ -146,6 +149,11 @@ begin
 
     Margins.Left := 8;
   end;
+end;
+
+procedure TCustomMenu.ItemClick(Sender: TObject);
+begin
+  showmessage('teste');
 end;
 
 end.
