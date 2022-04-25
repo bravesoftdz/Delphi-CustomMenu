@@ -96,9 +96,7 @@ begin
     end).Start;
 end;
 
-procedure TCustomMenu.HideMenuClick(
-  Sender:
-  TObject);
+procedure TCustomMenu.HideMenuClick(Sender: TObject);
 begin
   HideMenu;
 end;
