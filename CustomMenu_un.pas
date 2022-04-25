@@ -23,14 +23,13 @@ type
     lytBody: TLayout;
     itemCancelar: TRectangle;
     lblItemCancelar: TLabel;
-    procedure ItemClick(Sender: TObject);
   public
     { Public declarations }
     constructor Create(frm: TForm);
     procedure ShowMenu;
     procedure HideMenu;
     procedure HideMenuClick(Sender: TObject);
-    procedure AddItem(AItemText: string);
+    procedure AddItem(AItemText: string; AItemClick: TNotifyEvent);
   end;
 
 implementation
@@ -104,7 +103,7 @@ begin
   HideMenu;
 end;
 
-procedure TCustomMenu.AddItem(AItemText: string);
+procedure TCustomMenu.AddItem(AItemText: string; AItemClick: TNotifyEvent);
 begin
   itemCancelar := TRectangle.Create(lytBody);
   with itemCancelar do
@@ -139,7 +138,7 @@ begin
     BringToFront;
 
     HitTest := True;
-    OnClick := ItemClick;
+    OnClick := AItemClick;
 
     Text := AItemText;
 
@@ -149,11 +148,6 @@ begin
 
     Margins.Left := 8;
   end;
-end;
-
-procedure TCustomMenu.ItemClick(Sender: TObject);
-begin
-  showmessage('teste');
 end;
 
 end.
