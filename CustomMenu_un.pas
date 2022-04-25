@@ -122,10 +122,11 @@ begin
     XRadius := 6;
     YRadius := 6;
 
+    Margins.Bottom := 16;
     Margins.Left := 16;
     Margins.Right := 16;
 
-    Corners := []
+//    Corners := []
   end;
 
   lblItemCancelar := TLabel.Create(lytBody);
