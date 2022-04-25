@@ -127,7 +127,10 @@ begin
     XRadius := 6;
     YRadius := 6;
 
-    name := 'ItemMenus' + FItemCount.ToString;
+    Margins.Left := 16;
+    Margins.Right := 16;
+
+    name := 'ItemMenu' + FItemCount.ToString;
 
     Corners := [TCorner(0), TCorner(1)];
 
@@ -142,12 +145,9 @@ begin
     if FItemCount = 2 then
       Corners := [TCorner(2), TCorner(3)];
 
-    Margins.Left := 16;
-    Margins.Right := 16;
-
     if FItemCount > 3 then
     begin
-      (self.FindComponent('ItemMenus' + (FItemCount - 1).ToString) as TRectangle).Corners := [];
+      (self.FindComponent('ItemMenu' + (FItemCount - 1).ToString) as TRectangle).Corners := [];
     end;
 
   end;
