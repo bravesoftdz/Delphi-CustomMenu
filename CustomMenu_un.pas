@@ -69,21 +69,23 @@ begin
     Align := TAlignLayout.Contents;
     BringToFront;
   end;
+
+  AddItem('Cancelar', HideMenuClick);
 end;
 
 procedure TCustomMenu.ShowMenu;
 var
   I: integer;
 begin
-  lytBody.Position.Y := lytMenu.Height + 20;
+  Self.lytBody.Position.Y := Self.lytMenu.Height + 20;
 
-  rectFundo.Opacity := 0;
-  rectFundo.AnimateFloat('Opacity', 0.4, 0.2);
+  Self.rectFundo.Opacity := 0;
+  Self.rectFundo.AnimateFloat('Opacity', 0.4, 0.2);
 
-  lytBody.AnimateFloat('Position.Y', lytMenu.Height - lytBody.Height, 0.5,
+  Self.lytBody.AnimateFloat('Position.Y', Self.lytMenu.Height - Self.lytBody.Height, 0.5,
     TAnimationType.InOut, TInterpolationType.Circular);
 
-  lytMenu.Visible := True;
+  Self.lytMenu.Visible := True;
 end;
 
 procedure TCustomMenu.HideMenu;
@@ -109,7 +111,7 @@ end;
 procedure TCustomMenu.AddItem(AItemText: string; AItemClick: TNotifyEvent);
 begin
   FItemCount := FItemCount + 1;
-  itemCancelar := TRectangle.Create(self);
+  itemCancelar := TRectangle.Create(Self);
   with itemCancelar do
   begin
     parent := lytBody;
@@ -139,15 +141,17 @@ begin
       Margins.Bottom := 16;
       Margins.Top := 16;
 
-      Corners := [TCorner(0), TCorner(1), TCorner(2), TCorner(3)];
     end;
 
-    if FItemCount = 2 then
-      Corners := [TCorner(2), TCorner(3)];
+    if (FItemCount = 1) or (FItemCount = 2) then
+      Corners := [TCorner(0), TCorner(1), TCorner(2), TCorner(3)];
+
+    if FItemCount = 3 then
+      (Self.FindComponent('ItemMenu2') as TRectangle).Corners := [TCorner(2), TCorner(3)];
 
     if FItemCount > 3 then
     begin
-      (self.FindComponent('ItemMenu' + (FItemCount - 1).ToString) as TRectangle).Corners := [];
+      (Self.FindComponent('ItemMenu' + (FItemCount - 1).ToString) as TRectangle).Corners := [];
     end;
 
   end;
